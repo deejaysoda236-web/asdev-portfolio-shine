@@ -4,9 +4,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/", label: "LinkedIn" },
-    { icon: Instagram, href: "https://instagram.com/", label: "Instagram" },
+    { icon: Github, href: "https://github.com/ahmadsodik4717", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/ahmadsodik4717", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/ahmadsodik4717", label: "Instagram" },
   ];
 
   return (
@@ -29,7 +29,7 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-smooth"
+                className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-smooth hover:scale-110"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5" />
