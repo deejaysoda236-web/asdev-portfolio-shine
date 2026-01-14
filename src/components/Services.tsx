@@ -1,6 +1,9 @@
 import { Globe, Smartphone, Palette, Rocket, Code, Settings } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Services = () => {
+  const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.1 });
+
   const services = [
     {
       icon: Globe,
@@ -47,9 +50,13 @@ const Services = () => {
   ];
 
   return (
-    <section id="layanan" className="py-20 md:py-28 bg-card">
+    <section
+      id="layanan"
+      className="py-20 md:py-28 bg-card"
+      ref={sectionRef as React.RefObject<HTMLElement>}
+    >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
+        <div className={`text-center mb-12 reveal ${isVisible ? "visible" : ""}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Layanan <span className="text-gradient">Saya</span>
           </h2>
@@ -63,8 +70,8 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="bg-background p-6 rounded-2xl border border-border hover:border-primary/50 transition-smooth group hover:shadow-hover"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`bg-background p-6 rounded-2xl border border-border hover:border-primary/50 transition-smooth group hover:shadow-hover reveal-scale ${isVisible ? "visible" : ""}`}
+              style={{ transitionDelay: `${0.15 + index * 0.1}s` }}
             >
               <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary/20 group-hover:scale-110 transition-smooth">
                 <service.icon className="w-7 h-7 text-primary" />

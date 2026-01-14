@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,14 +17,14 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "ahmadsodik@asdev.id",
-      href: "mailto:ahmadsodik@asdev.id",
+      value: "ahmadsodik0105@gmail.com",
+      href: "mailto:ahmadsodik0105@gmail.com",
     },
     {
       icon: Phone,
       title: "WhatsApp",
-      value: "+62 XXX-XXXX-XXXX",
-      href: "https://wa.me/62",
+      value: "+62 812-2880-3784",
+      href: "https://wa.me/6281228803784",
     },
     {
       icon: MapPin,
@@ -48,9 +50,13 @@ const Contact = () => {
   };
 
   return (
-    <section id="kontak" className="py-20 md:py-28 bg-background">
+    <section
+      id="kontak"
+      className="py-20 md:py-28 bg-background"
+      ref={sectionRef as React.RefObject<HTMLElement>}
+    >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
+        <div className={`text-center mb-12 reveal ${isVisible ? "visible" : ""}`}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Hubungi <span className="text-gradient">Saya</span>
           </h2>
@@ -63,13 +69,14 @@ const Contact = () => {
         <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-4">
-            {contactInfo.map((info) => (
+            {contactInfo.map((info, index) => (
               <a
                 key={info.title}
                 href={info.href}
-                className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-smooth group"
+                className={`flex items-start gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/50 transition-smooth group reveal-left ${isVisible ? "visible" : ""}`}
+                style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-smooth">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-smooth">
                   <info.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
@@ -79,7 +86,10 @@ const Contact = () => {
               </a>
             ))}
 
-            <div className="p-4 bg-card rounded-xl border border-border mt-6">
+            <div
+              className={`p-4 bg-card rounded-xl border border-border mt-6 reveal-left ${isVisible ? "visible" : ""}`}
+              style={{ transitionDelay: "0.5s" }}
+            >
               <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 text-primary" />
                 Quick Chat
@@ -88,10 +98,10 @@ const Contact = () => {
                 Ingin diskusi lebih cepat? Langsung hubungi via WhatsApp!
               </p>
               <a
-                href="https://wa.me/62"
+                href="https://wa.me/6281228803784"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-smooth"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-smooth hover:scale-105"
               >
                 <MessageCircle className="w-4 h-4" />
                 Chat WhatsApp
@@ -100,7 +110,10 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-3">
+          <div
+            className={`lg:col-span-3 reveal-right ${isVisible ? "visible" : ""}`}
+            style={{ transitionDelay: "0.3s" }}
+          >
             <form
               onSubmit={handleSubmit}
               className="bg-card p-6 md:p-8 rounded-2xl border border-border"
