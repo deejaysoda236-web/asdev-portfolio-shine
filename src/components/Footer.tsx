@@ -5,8 +5,8 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/ahmadsodik4717", label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/ahmadsodik4717", label: "LinkedIn" },
-    { icon: Instagram, href: "https://www.instagram.com/ahmadsodik4717", label: "Instagram" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/ahmadsodik4717/", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/ahmadsodik4717/", label: "Instagram" },
   ];
 
   return (
