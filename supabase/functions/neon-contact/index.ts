@@ -77,7 +77,7 @@ serve(async (req) => {
       
       const emailResponse = await resend.emails.send({
         from: "Portfolio Contact <onboarding@resend.dev>",
-        to: ["ahmadsodik0105@gmail.com"], // Your email
+        to: ["deejaysoda236@gmail.com"], // Email akun Resend Anda
         subject: `[Portfolio] Pesan Baru: ${subject}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
