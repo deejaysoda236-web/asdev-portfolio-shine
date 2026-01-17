@@ -41,16 +41,18 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .insert({
+      // Menggunakan Neon Database via Edge Function
+      const { data, error } = await supabase.functions.invoke('neon-contact', {
+        body: {
           name: formData.name,
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
-        });
+        },
+      });
 
       if (error) throw error;
+      if (data?.error) throw new Error(data.error);
 
       toast({
         title: "Pesan Terkirim!",

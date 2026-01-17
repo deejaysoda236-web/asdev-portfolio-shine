@@ -1,1 +1,4 @@
 project_id = "hngkwjaozicrkdkjskgl"
+
+[functions.neon-contact]
+verify_jwt = false
