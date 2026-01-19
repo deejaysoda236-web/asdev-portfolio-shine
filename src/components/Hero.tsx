@@ -1,4 +1,4 @@
-import profileImage from "@/assets/profile.jpeg";
+import profileImage from "@/assets/profile.png";
 import { ArrowDown, Github, Linkedin, Instagram, Youtube } from "lucide-react";
 
 const Hero = () => {
