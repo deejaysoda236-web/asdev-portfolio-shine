@@ -1,25 +1,16 @@
-import { GraduationCap, MapPin, Award } from "lucide-react";
+import { Download } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const About = () => {
   const { ref: sectionRef, isVisible } = useScrollReveal({ threshold: 0.2 });
 
-  const details = [
-    {
-      icon: MapPin,
-      title: "Asal",
-      description: "Mesuji Jaya, Kec. Mesuji Makmur, Ogan Komering Ilir, Sumatera Selatan",
-    },
-    {
-      icon: GraduationCap,
-      title: "Pendidikan",
-      description: "Universitas Sains Al Qur'an - Teknik Informatika",
-    },
-    {
-      icon: Award,
-      title: "IPK",
-      description: "3.74 / 4.00",
-    },
+  const personalInfo = [
+    { label: "Name", value: "Ahmad Sodik" },
+    { label: "Age", value: "22 Years" },
+    { label: "Nationality", value: "Indonesia" },
+    { label: "Phone", value: "+62 812-2880-3784" },
+    { label: "Language", value: "Indonesia, English" },
+    { label: "Freelance", value: "Available", highlight: true },
   ];
 
   return (
@@ -30,36 +21,50 @@ const About = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className={`text-center mb-12 reveal ${isVisible ? "visible" : ""}`}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Tentang <span className="text-gradient">Saya</span>
+          <p className="text-muted-foreground uppercase tracking-widest text-sm mb-2">ABOUT ME</p>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            I Develop System<br />
+            <span className="text-gradient">that Work</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-primary mx-auto rounded-full" />
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <p
-            className={`text-muted-foreground text-lg text-center mb-12 leading-relaxed reveal delay-200 ${isVisible ? "visible" : ""}`}
-          >
-            Saya adalah seorang Front-End Developer yang berfokus pada pengembangan aplikasi web dan mobile. 
-            Dengan latar belakang pendidikan di Teknik Informatika dan pengalaman dalam membangun 
-            antarmuka pengguna yang modern, saya berkomitmen untuk menciptakan solusi digital yang 
-            berkualitas dan memenuhi kebutuhan klien.
-          </p>
+        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto items-start">
+          {/* Left - Description */}
+          <div className={`reveal-left ${isVisible ? "visible" : ""}`} style={{ transitionDelay: "0.2s" }}>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              Saya adalah seorang Front-End Developer yang berfokus pada pengembangan aplikasi web dan mobile. 
+              Dengan latar belakang pendidikan di Teknik Informatika dan pengalaman dalam membangun 
+              antarmuka pengguna yang modern, saya berkomitmen untuk menciptakan solusi digital yang 
+              berkualitas dan memenuhi kebutuhan klien.
+            </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {details.map((detail, index) => (
-              <div
-                key={detail.title}
-                className={`bg-background p-6 rounded-xl border border-border hover:border-primary/50 transition-smooth group reveal-scale ${isVisible ? "visible" : ""}`}
-                style={{ transitionDelay: `${0.3 + index * 0.15}s` }}
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-smooth">
-                  <detail.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{detail.title}</h3>
-                <p className="text-muted-foreground text-sm">{detail.description}</p>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-secondary border border-border rounded-lg text-foreground font-medium hover:border-primary/50 transition-smooth hover:scale-105"
+            >
+              <Download className="w-5 h-5" />
+              Download CV
+            </a>
+          </div>
+
+          {/* Right - Personal Info */}
+          <div className={`reveal-right ${isVisible ? "visible" : ""}`} style={{ transitionDelay: "0.3s" }}>
+            <div className="bg-background p-6 rounded-2xl border border-border">
+              <div className="space-y-4">
+                {personalInfo.map((info, index) => (
+                  <div 
+                    key={info.label} 
+                    className="flex items-center justify-between py-2 border-b border-border last:border-b-0"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <span className="text-muted-foreground">{info.label}</span>
+                    <span className={info.highlight ? "text-primary font-medium" : "text-foreground"}>
+                      {info.value}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
